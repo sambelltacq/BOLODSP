@@ -30,7 +30,8 @@ case "${PARAM}" in
 esac
 
 if [[ -z $1 ]]; then
-    echo "ERROR: no channel argument, must provide a number or 'ALL'"
+    # Special case to print all values for a column.
+    echo $(awk -v col="$COL" '{print $col}' /tmp/calibfit.log)
     exit
 elif [[ "$1" = "ALL" ]]; then
     # Special case to print all values for a column.
